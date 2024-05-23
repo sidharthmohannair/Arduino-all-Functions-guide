@@ -160,3 +160,152 @@ int factorial(int n) {
   return n * factorial(n - 1);
 }
 ```
+
+## 8. Passing Functions as Parameters
+### Explanation
+Functions can be passed as parameters to other functions, allowing higher-order programming. This is useful for creating generic functions that can perform operations based on different criteria.
+
+### Example
+```cpp
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at 9600 bps
+}
+
+void loop() {
+  int result = compute(5, 3, add);
+  Serial.println(result); // Prints 8
+  result = compute(5, 3, multiply);
+  Serial.println(result); // Prints 15
+  delay(1000); // Wait for a second
+}
+
+int compute(int a, int b, int (*operation)(int, int)) {
+  return operation(a, b);
+}
+
+int add(int a, int b) {
+  return a + b;
+}
+
+int multiply(int a, int b) {
+  return a * b;
+}
+```
+
+## 9. Function Pointers
+### Explanation
+Function pointers store the address of a function and can be used to call functions indirectly. This is useful for callback mechanisms and dynamic function calls.
+
+### Example
+```cpp
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at 9600 bps
+}
+
+void loop() {
+  void (*funcPtr)();
+  funcPtr = printMessage;
+  funcPtr(); // Calls printMessage()
+  delay(1000); // Wait for a second
+}
+
+void printMessage() {
+  Serial.println("Hello from function pointer!");
+}
+```
+
+## 10. Lambda Functions (Anonymous Functions)
+### Explanation
+Lambda functions are anonymous functions defined within the scope of another function. They are useful for quick, inline function definitions, especially as arguments to other functions.
+
+### Example
+```cpp
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at 9600 bps
+}
+
+void loop() {
+  auto add = [](int a, int b) -> int {
+    return a + b;
+  };
+  
+  int result = add(5, 3);
+  Serial.println(result); // Prints 8
+  delay(1000); // Wait for a second
+}
+```
+
+## 11. Using Structs and Classes with Functions
+### Explanation
+Combining structs or classes with functions allows for more organized and object-oriented code. This is useful for managing complex data and behavior in a modular way.
+
+### Example: Using Structs
+```cpp
+struct Point {
+  int x;
+  int y;
+};
+
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at 9600 bps
+}
+
+void loop() {
+  Point p1 = {2, 3};
+  Point p2 = {4, 5};
+  Point result = addPoints(p1, p2);
+  Serial.print("Result: (");
+  Serial.print(result.x);
+  Serial.print(", ");
+  Serial.print(result.y);
+  Serial.println(")");
+  delay(1000); // Wait for a second
+}
+
+Point addPoints(Point a, Point b) {
+  Point result;
+  result.x = a.x + b.x;
+  result.y = a.y + b.y;
+  return result;
+}
+```
+
+### Example: Using Classes
+```cpp
+class LED {
+public:
+  LED(int pin) {
+    this->pin = pin;
+    pinMode(pin, OUTPUT);
+  }
+
+  void on() {
+    digitalWrite(pin, HIGH);
+  }
+
+  void off() {
+    digitalWrite(pin, LOW);
+  }
+
+private:
+  int pin;
+};
+
+LED led1(13);
+
+void setup() {
+  // No need to initialize the pin, it's done in the constructor
+}
+
+void loop() {
+  led1.on();
+  delay(1000);
+  led1.off();
+  delay(1000);
+}
+```
+
+## Conclusion
+
+Congratulations on completing this tutorial! You've learned how to use various types of functions in Arduino programming, from basic built-in functions to advanced techniques like overloading, recursion, and using structs and classes. Keep experimenting and exploring new ways to make your Arduino projects more efficient and fun. Happy coding!
+
