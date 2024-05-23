@@ -49,3 +49,45 @@ float sensorValueToVoltage(int sensorValue) {
   return sensorValue * (5.0 / 1023.0); // Convert the analog reading to voltage
 }
 ```
+
+
+## 3. Functions with Parameters
+### Explanation
+Functions can take parameters to perform operations on given values.
+
+### Example
+```cpp
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at 9600 bps
+}
+
+void loop() {
+  printMessage("Hello, Arduino!");
+  delay(1000); // Wait for a second
+}
+
+void printMessage(String message) {
+  Serial.println(message); // Print the message to the serial monitor
+}
+```
+
+## 4. Functions with Return Values
+### Explanation
+Functions can return values of different types, allowing you to pass results back to the caller.
+
+### Example
+```cpp
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at 9600 bps
+}
+
+void loop() {
+  int sum = addNumbers(5, 7);
+  Serial.println(sum); // Print the sum to the serial monitor
+  delay(1000); // Wait for a second
+}
+
+int addNumbers(int a, int b) {
+  return a + b; // Return the sum of a and b
+}
+```
